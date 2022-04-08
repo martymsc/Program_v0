@@ -28,6 +28,21 @@ namespace Program_v0
 
             int Chosed = Hra_v0.AllMethods.PrintOut(TextMenu, TextMenuP);
 
+            switch(Chosed)
+            {
+                case 2:
+                    game();
+                    break;
+                case 3:
+                    LoadData();
+                    break;
+                case 4:
+                    Scoreboard();
+                    break;
+                case 5:
+                    Environment.Exit(0);
+                    break;
+            }
         }
 
 

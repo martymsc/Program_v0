@@ -8,6 +8,8 @@ namespace Hra_v0
 {
     public class AllMethods
     {
+
+
         //Funkce vypíše vložené řady, TxtToPrint, je řetězec slov na vypsání, numC je seznam řádků na které slova vypsat
         //Funkce dále čeká na vstup uživtele a aktuální volbu zobrazuje změnou barvy textu a pozadí
         //Funkce vrací číso řádky který zvolil uživatel
@@ -69,6 +71,15 @@ namespace Hra_v0
 
             Console.SetCursorPosition((Console.WindowWidth - txt.Length) / 2, collom);
             Console.WriteLine(txt);
+        }
+        public static void LoadData()
+        {
+
+
+        }
+        public static void Scoreboard()
+        {
+
         }
     }
 }
