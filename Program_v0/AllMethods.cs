@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Hra_v0.Character;
 
 namespace Hra_v0
 {
@@ -13,6 +14,7 @@ namespace Hra_v0
         //Funkce vypíše vložené řady, TxtToPrint, je řetězec slov na vypsání, numC je seznam řádků na které slova vypsat
         //Funkce dále čeká na vstup uživtele a aktuální volbu zobrazuje změnou barvy textu a pozadí
         //Funkce vrací číso řádky který zvolil uživatel
+
         public static int PrintOut(string[] TxtToPrint, int[] numC)
         {
             int SSteps = numC[0];
@@ -65,21 +67,31 @@ namespace Hra_v0
             return Ent;
 
         }
+
         //Funkce centrování textu v konzoli,(slovo na centr, č.řádku)
+
         public static void CenterWrite(string txt = "aohj", int collom = 0)
         {
 
             Console.SetCursorPosition((Console.WindowWidth - txt.Length) / 2, collom);
             Console.WriteLine(txt);
         }
-        public static void LoadData()
-        {
 
 
-        }
         public static void Scoreboard()
         {
-
+            Console.WriteLine("čus");
         }
+
+        public int fight()
+        {
+
+
+
+            int damage = 0;
+            return damage;
+        }
+
+        
     }
 }

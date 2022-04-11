@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hra_v0
 {
-    internal class Player
+    internal class Player : Character
     {
-
-
-
-
 
     }
 }
