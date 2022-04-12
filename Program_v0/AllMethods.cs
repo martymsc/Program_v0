@@ -74,7 +74,7 @@ namespace Hra_v0
         {
 
             Console.SetCursorPosition((Console.WindowWidth - txt.Length) / 2, collom);
-            Console.WriteLine(txt);
+            Console.Write(txt);
         }
 
 
@@ -83,13 +83,12 @@ namespace Hra_v0
             Console.WriteLine("čus");
         }
 
-        public int fight()
+        public static int roll()
         {
+            Random r = new Random();
+            int rInt = r.Next(1, 12);
 
-
-
-            int damage = 0;
-            return damage;
+            return rInt;
         }
 
         

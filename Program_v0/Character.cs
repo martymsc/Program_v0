@@ -10,6 +10,7 @@ namespace Hra_v0
     {
         public string Name;
         public int Lives;
+        public int Kills;
         
 
         public bool fight()

@@ -9,9 +9,9 @@ namespace Program_v0
     {
         static void Main(string[] args)
         {
-            //MainMenu();
+            MainMenu();
             //PlayerCreation();
-            Game();
+            //Game();
             
 
 
@@ -43,42 +43,122 @@ namespace Program_v0
                     Environment.Exit(0);
                     break;
             }
+            
         }
 
 
         
-        public static void PlayerCreation()
-        {
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.BackgroundColor = ConsoleColor.White;
-            CenterWrite("Zadejte svoje jméno:");
-            Console.ResetColor();
-            string NName = Console.ReadLine();
-            Hra_v0.Character Player = new Hra_v0.Character();
-            Player.Name = NName;
-            Player.Lives = 4;
-            Console.WriteLine(Player.Name);
-        }
+        //public void PlayerCreation()
+        //{
+        //    Console.ForegroundColor = ConsoleColor.Black;
+        //    Console.BackgroundColor = ConsoleColor.White;
+        //    CenterWrite("Zadejte svoje jméno:");
+        //    Console.ResetColor();
+        //    string NName = Console.ReadLine();
+        //    Hra_v0.Character Player = new Hra_v0.Character();
+        //    Player.Name = NName;
+        //    Player.Lives = 4;
+            
+        //    Console.WriteLine(Player.Name);
+        //}
         //Funkce hry
         static void Game()
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
             CenterWrite("Zadejte svoje jméno:");
             Console.ResetColor();
+            Console.SetCursorPosition(0, 3);
             string NName = Console.ReadLine();
             Hra_v0.Character Player = new Hra_v0.Character();
             Player.Name = NName;
             Player.Lives = 4;
-            Console.WriteLine(Player.Name);
+            Player.Kills = 0;
+            Console.Clear();
 
-            while (Player.Lives != 0)
+            
+
+            //Main Game loop, běží dokud má Hráč více jak 0 životů
+            for (int Round = 0;Player.Lives > 0;Round++ )
             {
+                int Initialroll;
 
+
+
+                Console.Clear();
+                //Vytvoření nového nepřítele
+                string[] EnemyName = new string[10] { "Nick1", "Nick2", "Nick3", "Nick4", "Nick5", "Nick6", "Nick7", "Nick8", "Nick9", "Nick10" };
+                Random r = new Random();
+                int rInt = r.Next(0, 10);
+
+                Hra_v0.Character enemy = new Hra_v0.Character();
+                enemy.Name = EnemyName[rInt];
+
+
+                Console.SetCursorPosition(0, 0);
+                Console.Write("Podlaží: ");
+                Console.Write(Round);
+                Console.Write("  Životy:");
+                Console.WriteLine(Player.Lives);
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                CenterWrite("Nepřítel: ");
+                Console.ResetColor();
+                CenterWrite(enemy.Name,1);
+
+                Initialroll = roll();
+                CenterWrite("První hod kostkou:        ", 3);
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Write(" ");
+                Console.Write(Initialroll);
+                Console.Write(" ");
+                Console.ResetColor();
+
+                Console.Write("Bude další hod vyšší, nebo nižší než hod aktuální?(1-12)");
+                string[] Options = new string[2] { "Vyšší", "Nižší" };
+                int[] Position = new int[2] { 7, 8 };
+                PrintOut(Options, Position);
+
+
+
+
+
+
+
+
+                while (true) ;
+
+
+
+
+
+
+
+
+                Player.Kills = Round;
             }
         }
 
+        //public static void EnemyCreation()
+        //{
+        //    int EnemyCount = 0;
 
+        //string[] EnemyName = new string[10] {"Nick1", "Nick2", "Nick3", "Nick4", "Nick5", "Nick6", "Nick7", "Nick8", "Nick9", "Nick10" };
+
+
+        //    Random r = new Random();
+        //    int rInt = r.Next(0, 10);
+
+        //    Hra_v0.Character enemy = new Hra_v0.Character();
+        //    enemy.Name = EnemyName[rInt];
+           
+            
+        //}
 
     }
 }
+
+
+
