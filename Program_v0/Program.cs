@@ -2,6 +2,7 @@
 using System.Linq;
 using static Hra_v0.AllMethods;
 using static Hra_v0.Character;
+using System.Threading;
 
 namespace Program_v0
 {
@@ -9,9 +10,9 @@ namespace Program_v0
     {
         static void Main(string[] args)
         {
-            MainMenu();
+            //MainMenu();
             //PlayerCreation();
-            //Game();
+            Game();
             
 
 
@@ -26,8 +27,8 @@ namespace Program_v0
             String[] TextMenu = new string[3] { "1 -- Začít novou hru", "2 -- Scoreboard", "3 -- Ukončit hru" };
             //Array s číslama řádků na který text vypsat, čísla na sebe musí navazovat
             int[] TextMenuP = new int[3] { 2, 3, 4, };
-            Hra_v0.AllMethods.CenterWrite(".............Výtejte ve hře............", 0);
-            Hra_v0.AllMethods.CenterWrite("Vyberte jednu z možností:", 1);
+            Hra_v0.AllMethods.CenterWrite(".............Výtejte ve hře............", 0,1000);
+            Hra_v0.AllMethods.CenterWrite("Vyberte jednu z možností:", 1,1);
 
             int Chosed = Hra_v0.AllMethods.PrintOut(TextMenu, TextMenuP);
 
@@ -62,14 +63,14 @@ namespace Program_v0
         //    Console.WriteLine(Player.Name);
         //}
         //Funkce hry
-        static void Game()
+        static async void Game()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
-            CenterWrite("Zadejte svoje jméno:");
+            CenterWrite("Zadejte svoje jméno:",1 ,1000);
             Console.ResetColor();
-            Console.SetCursorPosition(0, 3);
+            Console.SetCursorPosition(5, 3);
             string NName = Console.ReadLine();
             Hra_v0.Character Player = new Hra_v0.Character();
             Player.Name = NName;
@@ -110,12 +111,17 @@ namespace Program_v0
                         Console.WriteLine(Player.Lives);
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.White;
-                        CenterWrite("Nepřítel: ");
+                        CenterWrite("Nepřítel: ", 0, 500);
                         Console.ResetColor();
                         CenterWrite(enemy.Name, 1);
+                        Console.WriteLine();
+                        CenterWrite("Životy perřítele:    ", 2);
+                        Console.Write(enemy.Lives);
+
+
 
                         Initialroll = roll();
-                        CenterWrite("První hod kostkou:        ", 3);
+                        CenterWrite("První hod kostkou:        ", 4);
 
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.White;
@@ -126,10 +132,10 @@ namespace Program_v0
                         Console.WriteLine(" ");
                         Console.WriteLine(" ");
 
-                        Console.Write("Bude další hod vyšší, nebo nižší než hod aktuální?(1-12)");
+                        SlowWrite("Bude další hod vyšší, nebo nižší než hod aktuální?(1-12)",1);
                         string[] Options = new string[2] { "Vyšší", "Nižší" };
-                        int[] Position = new int[2] { 6, 7 };
-                        if (PrintOut(Options, Position) == 6)
+                        int[] Position = new int[2] { 7, 8 };
+                        if (PrintOut(Options, Position) == 7)
                         {
                             Bigger = true;
                         }
@@ -138,7 +144,7 @@ namespace Program_v0
 
 
                         SecRoll = roll();
-                        CenterWrite("Druhý hod kostkou je:       ", 10);
+                        CenterWrite("Druhý hod kostkou je:       ", 11,1000);
 
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.White;
@@ -149,39 +155,60 @@ namespace Program_v0
                         Console.WriteLine(" ");
                         Console.WriteLine(" ");
 
-                        SecRoll = Initialroll;
 
+                        //Úspěšný útok na nepřítele, ztrácí jeden život
                         if (SecRoll > Initialroll & Bigger == true)
                         {
+                            Console.WriteLine();
                             enemy.Lives--;
                             WinFrame();
                             Draw = false;
+                            SlowWrite("        Úspěšný útok na nepřítele, ztrácí jeden život");
                         }
+
+                        //Hráč ztrácí jeden život
                         if (SecRoll > Initialroll & Bigger != true)
                         {
+                            Console.WriteLine();
                             Player.Lives--;
                             Draw = false;
+                            SlowWrite("        Hráč ztrácí jeden život");
                         }
+
+                        //Remíza
                         if (SecRoll == Initialroll)
                         {
-                            Console.Write("Draw");
+                            Console.WriteLine();
                             Draw = true;
+                            SlowWrite("        Remíza");
                         }
+
+                        //Hráč ztrácí jeden život
                         if (SecRoll < Initialroll & Bigger == true)
                         {
                             Player.Lives--;
                             Draw = false;
+                            Console.WriteLine();
+                            SlowWrite("        Hráč ztrácí jeden život");
+
+
                         }
+
+                        //Úspěšný útok na nepřítele, ztrácí jeden život
                         if (SecRoll < Initialroll & Bigger != true)
                         {
+                            Console.WriteLine();
                             enemy.Lives--;
                             Draw = false;
+                            SlowWrite("        Úspěšný útok na nepřítele, ztrácí jeden život");
                         }
+                        Console.ReadKey();
+                        Console.Clear();
                     }
+                    
 
 
-
-                        while (true) ;
+                        
 
 
 
@@ -212,9 +239,9 @@ namespace Program_v0
         //}
         public static void WinFrame()
         {
-
+           
         }
-
+        
     }
 }
 

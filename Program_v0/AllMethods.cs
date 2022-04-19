@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Hra_v0.Character;
+using System.Threading;
 
 namespace Hra_v0
 {
@@ -63,18 +64,34 @@ namespace Hra_v0
 
             }
 
-            
+
             return Ent;
 
         }
 
         //Funkce centrování textu v konzoli,(slovo na centr, č.řádku)
 
-        public static void CenterWrite(string txt = "aohj", int collom = 0)
+        public static void CenterWrite(string txt = "aohj", int collom = 0, int writeDurationMilliseconds = 0) 
+        {
+            Console.SetCursorPosition((Console.WindowWidth - txt.Length) / 2, collom);
+            foreach (char c in txt)
+            {
+                Console.Write(c);
+                int sleepDuration = writeDurationMilliseconds  / txt.Length;
+                Thread.Sleep(sleepDuration);
+            }
+            
+        }
+
+        public static void SlowWrite(string txt = "aohj",int writeDurationMilliseconds = 0)
         {
 
-            Console.SetCursorPosition((Console.WindowWidth - txt.Length) / 2, collom);
-            Console.Write(txt);
+            foreach (char c in txt)
+            {
+                Console.Write(c);
+                int sleepDuration = writeDurationMilliseconds / txt.Length;
+                Thread.Sleep(sleepDuration);
+            }
         }
 
 
@@ -91,6 +108,7 @@ namespace Hra_v0
             return rInt;
         }
 
-        
+      
+
     }
 }

@@ -12,6 +12,7 @@ namespace Hra_v0
         public int Lives;
         public int Kills;
         
+        
 
         public bool fight()
         {
@@ -24,6 +25,7 @@ namespace Hra_v0
         {
             Random r = new Random();
             int rInt = r.Next(Min, Max);
+            
 
             return rInt;
         }
