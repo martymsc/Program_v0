@@ -33,7 +33,7 @@ namespace Hra_v0
                         Console.ResetColor();
 
                     CenterWrite(TxtToPrint[i], numC[i]);
-
+                    Console.ResetColor();
 
                 }
                 switch (Console.ReadKey().Key)
@@ -63,7 +63,7 @@ namespace Hra_v0
 
             }
 
-            Console.Write(Ent);
+            
             return Ent;
 
         }

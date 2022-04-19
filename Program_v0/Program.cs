@@ -77,13 +77,15 @@ namespace Program_v0
             Player.Kills = 0;
             Console.Clear();
 
-            
+
 
             //Main Game loop, běží dokud má Hráč více jak 0 životů
-            for (int Round = 0;Player.Lives > 0;Round++ )
+            for (int Round = 0; Player.Lives > 0; Round++)
             {
                 int Initialroll;
-
+                int SecRoll;
+                bool Bigger = false;
+                bool Draw = true;
 
 
                 Console.Clear();
@@ -94,50 +96,102 @@ namespace Program_v0
 
                 Hra_v0.Character enemy = new Hra_v0.Character();
                 enemy.Name = EnemyName[rInt];
+                enemy.Lives = 1;
 
+                while (enemy.Lives > 0)
+                {
+                    while (Draw == true)
+                    {
 
-                Console.SetCursorPosition(0, 0);
-                Console.Write("Podlaží: ");
-                Console.Write(Round);
-                Console.Write("  Životy:");
-                Console.WriteLine(Player.Lives);
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.BackgroundColor = ConsoleColor.White;
-                CenterWrite("Nepřítel: ");
-                Console.ResetColor();
-                CenterWrite(enemy.Name,1);
+                        Console.SetCursorPosition(0, 0);
+                        Console.Write("Podlaží: ");
+                        Console.Write(Round);
+                        Console.Write("  Životy:");
+                        Console.WriteLine(Player.Lives);
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                        CenterWrite("Nepřítel: ");
+                        Console.ResetColor();
+                        CenterWrite(enemy.Name, 1);
 
-                Initialroll = roll();
-                CenterWrite("První hod kostkou:        ", 3);
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.Write(" ");
-                Console.Write(Initialroll);
-                Console.Write(" ");
-                Console.ResetColor();
+                        Initialroll = roll();
+                        CenterWrite("První hod kostkou:        ", 3);
 
-                Console.Write("Bude další hod vyšší, nebo nižší než hod aktuální?(1-12)");
-                string[] Options = new string[2] { "Vyšší", "Nižší" };
-                int[] Position = new int[2] { 7, 8 };
-                PrintOut(Options, Position);
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.Write(" ");
+                        Console.Write(Initialroll);
+                        Console.Write(" ");
+                        Console.ResetColor();
+                        Console.WriteLine(" ");
+                        Console.WriteLine(" ");
 
-
-
-
-
-
-
-
-                while (true) ;
-
-
-
-
-
+                        Console.Write("Bude další hod vyšší, nebo nižší než hod aktuální?(1-12)");
+                        string[] Options = new string[2] { "Vyšší", "Nižší" };
+                        int[] Position = new int[2] { 6, 7 };
+                        if (PrintOut(Options, Position) == 6)
+                        {
+                            Bigger = true;
+                        }
+                        else { Bigger = false; }
 
 
 
-                Player.Kills = Round;
+                        SecRoll = roll();
+                        CenterWrite("Druhý hod kostkou je:       ", 10);
+
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.Write(" ");
+                        Console.Write(SecRoll);
+                        Console.Write(" ");
+                        Console.ResetColor();
+                        Console.WriteLine(" ");
+                        Console.WriteLine(" ");
+
+                        SecRoll = Initialroll;
+
+                        if (SecRoll > Initialroll & Bigger == true)
+                        {
+                            enemy.Lives--;
+                            WinFrame();
+                            Draw = false;
+                        }
+                        if (SecRoll > Initialroll & Bigger != true)
+                        {
+                            Player.Lives--;
+                            Draw = false;
+                        }
+                        if (SecRoll == Initialroll)
+                        {
+                            Console.Write("Draw");
+                            Draw = true;
+                        }
+                        if (SecRoll < Initialroll & Bigger == true)
+                        {
+                            Player.Lives--;
+                            Draw = false;
+                        }
+                        if (SecRoll < Initialroll & Bigger != true)
+                        {
+                            enemy.Lives--;
+                            Draw = false;
+                        }
+                    }
+
+
+
+                        while (true) ;
+
+
+
+
+
+
+
+
+                    Player.Kills = Round;
+                }
             }
         }
 
@@ -156,6 +210,10 @@ namespace Program_v0
            
             
         //}
+        public static void WinFrame()
+        {
+
+        }
 
     }
 }
