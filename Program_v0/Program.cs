@@ -99,8 +99,9 @@ namespace Program_v0
                 enemy.Name = EnemyName[rInt];
                 enemy.Lives = 1;
 
-                while (enemy.Lives > 0)
+                while (enemy.Lives != 0)
                 {
+                    Draw = true;
                     while (Draw == true)
                     {
 
@@ -132,7 +133,7 @@ namespace Program_v0
                         Console.WriteLine(" ");
                         Console.WriteLine(" ");
 
-                        SlowWrite("Bude další hod vyšší, nebo nižší než hod aktuální?(1-12)",1);
+                        SlowWrite("Bude další hod vyšší, nebo nižší než hod aktuální?(1-12)");
                         string[] Options = new string[2] { "Vyšší", "Nižší" };
                         int[] Position = new int[2] { 7, 8 };
                         if (PrintOut(Options, Position) == 7)
@@ -163,7 +164,18 @@ namespace Program_v0
                             enemy.Lives--;
                             WinFrame();
                             Draw = false;
-                            SlowWrite("        Úspěšný útok na nepřítele, ztrácí jeden život");
+                            if (enemy.Lives == 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                SlowWrite("        Úspěšný útok na nepřítele, ztrácí jeden život. Postupuješ do dašího podlaží");
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                SlowWrite("        Úspěšný útok! nepřítel ztrácí jeden život.");
+                                Console.ResetColor();
+                            }
                         }
 
                         //Hráč ztrácí jeden život
@@ -171,8 +183,20 @@ namespace Program_v0
                         {
                             Console.WriteLine();
                             Player.Lives--;
+                            
                             Draw = false;
-                            SlowWrite("        Hráč ztrácí jeden život");
+                            if (Player.Lives == 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                SlowWrite("        Nepřítel tě zranil, ztrácíš jeden život. Jsi mrtev.");
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                SlowWrite("        Nepřítel tě zranil, ztrácíš jeden život.");
+                                Console.ResetColor();
+                            }
                         }
 
                         //Remíza
@@ -180,7 +204,7 @@ namespace Program_v0
                         {
                             Console.WriteLine();
                             Draw = true;
-                            SlowWrite("        Remíza");
+                            SlowWrite("        Remíza, hraješ znovu.");
                         }
 
                         //Hráč ztrácí jeden život
@@ -189,9 +213,18 @@ namespace Program_v0
                             Player.Lives--;
                             Draw = false;
                             Console.WriteLine();
-                            SlowWrite("        Hráč ztrácí jeden život");
-
-
+                            if (Player.Lives == 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                SlowWrite("        Nepřítel tě zranil, ztrácíš jeden život. Jsi mrtev.");
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                SlowWrite("        Nepřítel tě zranil, ztrácíš jeden život.");
+                                Console.ResetColor();
+                            }
                         }
 
                         //Úspěšný útok na nepřítele, ztrácí jeden život
@@ -200,7 +233,18 @@ namespace Program_v0
                             Console.WriteLine();
                             enemy.Lives--;
                             Draw = false;
-                            SlowWrite("        Úspěšný útok na nepřítele, ztrácí jeden život");
+                            if (enemy.Lives == 0) 
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                SlowWrite("        Úspěšný útok na nepřítele, ztrácí jeden život. Postupuješ do dašího podlaží");
+                                Console.ResetColor();
+                            }
+                            else 
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                SlowWrite("        Úspěšný útok! nepřítel ztrácí jeden život.");
+                                Console.ResetColor();
+                            }
                         }
                         Console.ReadKey();
                         Console.Clear();

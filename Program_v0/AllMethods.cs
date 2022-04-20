@@ -83,7 +83,7 @@ namespace Hra_v0
             
         }
 
-        public static void SlowWrite(string txt = "aohj",int writeDurationMilliseconds = 0)
+        public static void SlowWrite(string txt = "aohj",int writeDurationMilliseconds = 500)
         {
 
             foreach (char c in txt)
