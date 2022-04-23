@@ -10,11 +10,13 @@ namespace Program_v0
     {
         static void Main(string[] args)
         {
-            //MainMenu();
+            String cesta = "Vysledky.txt";
+            MainMenu();
             //PlayerCreation();
-            Game();
+            //Game();
             
-
+            //ScoreboardWrite("zapsal jsem",1);
+            //ScoreboardRead(cesta);
 
         }
 
@@ -22,48 +24,48 @@ namespace Program_v0
         //Funkce startvního menu, získám z něho volbu uživatele
         static void MainMenu(int chosed = 0)
         {
-            Console.Clear();
-            //Array s textem co vypsat na řádky
-            String[] TextMenu = new string[3] { "1 -- Začít novou hru", "2 -- Scoreboard", "3 -- Ukončit hru" };
-            //Array s číslama řádků na který text vypsat, čísla na sebe musí navazovat
-            int[] TextMenuP = new int[3] { 2, 3, 4, };
-            Hra_v0.AllMethods.CenterWrite(".............Výtejte ve hře............", 0,1000);
-            Hra_v0.AllMethods.CenterWrite("Vyberte jednu z možností:", 1,1);
-
-            int Chosed = Hra_v0.AllMethods.PrintOut(TextMenu, TextMenuP);
-
-            switch(Chosed)
+            
+            
+                Console.Clear();
+                //Array s textem co vypsat na řádky
+                String[] TextMenu = new string[3] { "1 -- Začít novou hru", "2 -- Scoreboard", "3 -- Ukončit hru" };
+                //Array s číslama řádků na který text vypsat, čísla na sebe musí navazovat
+                int[] TextMenuP = new int[3] { 2, 3, 4, };
+                
+            while (true)
             {
-                case 2:
-                    Game();
-                    break;
-                case 3:
-                    Scoreboard();
-                    break;
-                case 4:
-                    Environment.Exit(0);
-                    break;
+                Hra_v0.AllMethods.CenterWrite(".............Výtejte ve hře............", 0,1000);
+                Hra_v0.AllMethods.CenterWrite("Vyberte jednu z možností:", 1,1);
+                int Chosed = Hra_v0.AllMethods.PrintOut(TextMenu, TextMenuP);
+            
+                switch (Chosed)
+                {
+                    case 2:
+                        Game();
+                        chosed = 0;
+                        Console.Clear();
+                        break;
+                    case 3:
+                        ScoreboardRead();
+                        chosed = 0;
+                        Console.Clear();
+                        break;
+                    case 4:
+                        Environment.Exit(0);
+                        break;
+                }
             }
             
         }
 
 
-        
-        //public void PlayerCreation()
-        //{
-        //    Console.ForegroundColor = ConsoleColor.Black;
-        //    Console.BackgroundColor = ConsoleColor.White;
-        //    CenterWrite("Zadejte svoje jméno:");
-        //    Console.ResetColor();
-        //    string NName = Console.ReadLine();
-        //    Hra_v0.Character Player = new Hra_v0.Character();
-        //    Player.Name = NName;
-        //    Player.Lives = 4;
-            
-        //    Console.WriteLine(Player.Name);
-        //}
+
+       
+
+
+
         //Funkce hry
-        static async void Game()
+        static public void Game()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Black;
@@ -99,7 +101,7 @@ namespace Program_v0
                 enemy.Name = EnemyName[rInt];
                 enemy.Lives = 1;
 
-                while (enemy.Lives != 0)
+                while (enemy.Lives != 0 & Player.Lives != 0)
                 {
                     Draw = true;
                     while (Draw == true)
@@ -251,19 +253,21 @@ namespace Program_v0
                     }
                     
 
-
-                        
-
-
-
-
-
-
-
-
-                    Player.Kills = Round;
+                    
                 }
+                Player.Kills = Round;
             }
+
+            ScoreboardWrite(Player.Name, Player.Kills);
+            Console.Clear();
+            CenterWrite("Byl jsi v podzemí zabit, dosažené podlaží: ", 2, 500);
+            Console.Write(Player.Kills);
+
+            Console.ReadKey();
+
+
+
+
         }
 
         //public static void EnemyCreation()
