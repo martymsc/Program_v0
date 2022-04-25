@@ -12,20 +12,12 @@ namespace Program_v0
         {
             String cesta = "Vysledky.txt";
             MainMenu();
-            //PlayerCreation();
-            //Game();
             
-            //ScoreboardWrite("zapsal jsem",1);
-            //ScoreboardRead(cesta);
-
         }
-
 
         //Funkce startvního menu, získám z něho volbu uživatele
         static void MainMenu(int chosed = 0)
         {
-            
-            
                 Console.Clear();
                 //Array s textem co vypsat na řádky
                 String[] TextMenu = new string[3] { "1 -- Začít novou hru", "2 -- Scoreboard", "3 -- Ukončit hru" };
@@ -58,11 +50,7 @@ namespace Program_v0
             
         }
 
-
-
        
-
-
 
         //Funkce hry
         static public void Game()
@@ -79,7 +67,6 @@ namespace Program_v0
             Player.Lives = 4;
             Player.Kills = 0;
             Console.Clear();
-
 
 
             //Main Game loop, běží dokud má Hráč více jak 0 životů
@@ -164,7 +151,6 @@ namespace Program_v0
                         {
                             Console.WriteLine();
                             enemy.Lives--;
-                            WinFrame();
                             Draw = false;
                             if (enemy.Lives == 0)
                             {
@@ -251,9 +237,6 @@ namespace Program_v0
                         Console.ReadKey();
                         Console.Clear();
                     }
-                    
-
-                    
                 }
                 Player.Kills = Round;
             }
@@ -265,30 +248,15 @@ namespace Program_v0
 
             Console.ReadKey();
 
+            ScoreboardRead();
 
+            Console.ReadKey();
 
 
         }
 
-        //public static void EnemyCreation()
-        //{
-        //    int EnemyCount = 0;
-
-        //string[] EnemyName = new string[10] {"Nick1", "Nick2", "Nick3", "Nick4", "Nick5", "Nick6", "Nick7", "Nick8", "Nick9", "Nick10" };
-
-
-        //    Random r = new Random();
-        //    int rInt = r.Next(0, 10);
-
-        //    Hra_v0.Character enemy = new Hra_v0.Character();
-        //    enemy.Name = EnemyName[rInt];
-           
-            
-        //}
-        public static void WinFrame()
-        {
-           
-        }
+        
+       
         
     }
 }

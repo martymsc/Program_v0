@@ -12,11 +12,9 @@ namespace Hra_v0
     public class AllMethods
     {
         
-
         //Funkce vypíše vložené řady, TxtToPrint, je řetězec slov na vypsání, numC je seznam řádků na které slova vypsat
         //Funkce dále čeká na vstup uživtele a aktuální volbu zobrazuje změnou barvy textu a pozadí
         //Funkce vrací číso řádky který zvolil uživatel
-
         public static int PrintOut(string[] TxtToPrint, int[] numC)
         {
             int SSteps = numC[0];
@@ -71,7 +69,6 @@ namespace Hra_v0
         }
 
         //Funkce centrování textu v konzoli,(slovo na centr, č.řádku)
-
         public static void CenterWrite(string txt = "aohj", int collom = 0, int writeDurationMilliseconds = 0)
         {
             Console.SetCursorPosition((Console.WindowWidth - txt.Length) / 2, collom);
@@ -83,7 +80,7 @@ namespace Hra_v0
             }
 
         }
-
+        //Metoda pro pomalé vypsání textu(text na vypsání, doba za kterou se vypíše)
         public static void SlowWrite(string txt = "aohj", int writeDurationMilliseconds = 500)
         {
 
@@ -95,7 +92,7 @@ namespace Hra_v0
             }
         }
 
-
+        //Metoda pro pro čtení textového souboru pro výpis do scoreboardu(cesta k souboru)
         public static void ScoreboardRead(String cesta = "Vysledky.txt")
         {
             Console.Clear();
@@ -122,11 +119,10 @@ namespace Hra_v0
             reader.Close();
 
             Console.ReadKey();
-            
 
 
         }
-        //Po smrti hráče uloží jeho výsledek do tabulky výsledků
+        //Po smrti hráče uloží jeho výsledek do tabulky výsledků(jmeno hraáče, max doažené podlaží, cesta k souboru)
         public static void ScoreboardWrite(string Name, int Podlazi,String cesta = "Vysledky.txt")
         {
             StreamWriter writer = new StreamWriter(cesta, true);
@@ -144,8 +140,5 @@ namespace Hra_v0
 
            return rInt;
         }
-
-      
-
     }
 }

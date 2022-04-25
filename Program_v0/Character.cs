@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Hra_v0
 {
+    //Třída která slouží jako předloha pro vytvoření objektu hráče nebo nepřítele
     public class Character
     {
         public string Name;
         public int Lives;
         public int Kills;
-        
         
 
         public bool fight()
