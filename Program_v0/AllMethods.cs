@@ -81,7 +81,7 @@ namespace Hra_v0
 
         }
         //Metoda pro pomalé vypsání textu(text na vypsání, doba za kterou se vypíše)
-        public static void SlowWrite(string txt = "aohj", int writeDurationMilliseconds = 500)
+        public static void SlowWrite(string txt = "aohj", int writeDurationMilliseconds = 300)
         {
 
             foreach (char c in txt)

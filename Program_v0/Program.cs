@@ -15,7 +15,7 @@ namespace Program_v0
             
         }
 
-        //Funkce startvního menu, získám z něho volbu uživatele
+        //Funkce startvního menu, získám z něho volbu uživatele, podle té se spusí metoda hry, score, nebo se hra ukončí
         static void MainMenu(int chosed = 0)
         {
                 Console.Clear();
@@ -58,10 +58,25 @@ namespace Program_v0
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
-            CenterWrite("Zadejte svoje jméno:",1 ,1000);
+            CenterWrite("Zadejte svoje jméno:",1 ,300);
             Console.ResetColor();
             Console.SetCursorPosition(5, 3);
             string NName = Console.ReadLine();
+
+            //Ošetření vstupu jmena
+            while(string.IsNullOrEmpty(NName) == true )
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                CenterWrite("Hej jméno je povinný jako:", 1, 300);
+                Console.ResetColor();
+                Console.SetCursorPosition(5, 3);
+                NName = Console.ReadLine();
+
+            }
+
+            //Vytvoření objektu hráče 
             Hra_v0.Character Player = new Hra_v0.Character();
             Player.Name = NName;
             Player.Lives = 4;
@@ -79,8 +94,8 @@ namespace Program_v0
 
 
                 Console.Clear();
-                //Vytvoření nového nepřítele
-                string[] EnemyName = new string[10] { "Nick1", "Nick2", "Nick3", "Nick4", "Nick5", "Nick6", "Nick7", "Nick8", "Nick9", "Nick10" };
+                //Vytvoření objektu nepřítele
+                string[] EnemyName = new string[10] { "Slime", "Zelený Skřet", "Bezhlavý Rytíř", "Ropucha", "Dvojhlavá zmije", "Obří stonožka", "Živá Hhína", "Muší král", "Zombík", "Houbový goblin" };
                 Random r = new Random();
                 int rInt = r.Next(0, 10);
 
@@ -101,11 +116,11 @@ namespace Program_v0
                         Console.WriteLine(Player.Lives);
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.White;
-                        CenterWrite("Nepřítel: ", 0, 500);
+                        CenterWrite("Nepřítel: ", 0, 300);
                         Console.ResetColor();
-                        CenterWrite(enemy.Name, 1);
+                        CenterWrite(enemy.Name, 1,200);
                         Console.WriteLine();
-                        CenterWrite("Životy perřítele:    ", 2);
+                        CenterWrite("Životy nepřítele:    ", 2);
                         Console.Write(enemy.Lives);
 
 
@@ -122,10 +137,11 @@ namespace Program_v0
                         Console.WriteLine(" ");
                         Console.WriteLine(" ");
 
+                        Console.SetCursorPosition(8,6);
                         SlowWrite("Bude další hod vyšší, nebo nižší než hod aktuální?(1-12)");
                         string[] Options = new string[2] { "Vyšší", "Nižší" };
-                        int[] Position = new int[2] { 7, 8 };
-                        if (PrintOut(Options, Position) == 7)
+                        int[] Position = new int[2] { 8, 9 };
+                        if (PrintOut(Options, Position) == 8)
                         {
                             Bigger = true;
                         }

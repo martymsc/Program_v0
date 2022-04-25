@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hra_v0
 {
-    //Třída která slouží jako předloha pro vytvoření objektu hráče nebo nepřítele
+    //Třída která slouží jako předloha pro vytvoření objektu hráče a nepřítele
     public class Character
     {
         public string Name;
@@ -14,13 +14,7 @@ namespace Hra_v0
         public int Kills;
         
 
-        public bool fight()
-        {
-
-
-            bool dmg = false;
-            return dmg;
-        }
+        //Metoda používaná pro simulaci hodu kostokou
         public static int RandomGen(int Min = 0, int Max = 12 )
         {
             Random r = new Random();
